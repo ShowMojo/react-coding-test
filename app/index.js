@@ -4,7 +4,15 @@ import { AppContainer } from 'react-hot-loader';
 import { configureStore, history } from './store/configureStore';
 import Root from './containers/Root';
 
-const store = configureStore();
+const store = configureStore({
+    current: null,
+    change: 0
+});
+
+const styleLink = document.createElement('link');
+styleLink.rel = 'stylesheet';
+styleLink.href = 'https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css';
+document.head.appendChild(styleLink);
 
 render(
     <AppContainer>
