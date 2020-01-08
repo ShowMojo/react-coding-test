@@ -90,8 +90,8 @@ function getQuote2(socket, ticker) {
   socket.emit(ticker, PRETTY_PRINT_JSON ? JSON.stringify(quote, null, 4) : JSON.stringify(quote));
 }
 
-function trackTicker(socket, ticker) {
-  console.log('track Ticker');
+function trackTicker(socket, ticker, delay = FETCH_INTERVAL) {
+  console.log(`track Ticker with ${delay} interval`);
 
   // run the first time immediately
   getQuote2(socket, ticker);
@@ -99,7 +99,7 @@ function trackTicker(socket, ticker) {
   // every N seconds
   var timer = setInterval(function() {
     getQuote2(socket, ticker);
-  }, FETCH_INTERVAL);
+  }, delay);
 
   socket.on('disconnect', function() {
     clearInterval(timer);
@@ -118,8 +118,8 @@ app.get('/', function(req, res) {
 });
 
 io.sockets.on('connection', function(socket) {
-  socket.on('ticker', function(ticker) {
-    trackTicker(socket, ticker);
+  socket.on('ticker', function(ticker, delay) {
+    trackTicker(socket, ticker, delay);
   });
 });
 
