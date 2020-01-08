@@ -1,0 +1,20 @@
+.container {
+  margin: 30px;
+
+  .formElement {
+      margin: 0 0 10px;
+  }
+  .dynamics {
+    margin: 0 0 10px;
+  }
+  .ticksContainer {
+    overflow-y: scroll;
+    max-height: 500px;
+
+    .tickItem {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 0 0 10px;
+      padding: 10px;
+    }
+  }
+}

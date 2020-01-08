@@ -1,2 +1,4 @@
 --compilers js:babel-register
 --require babel-polyfill
+-r jsdom-global/register
+--require test-setup.js
